@@ -9,7 +9,7 @@ variable "origin_type" {
   }
 }
 
-# Origin Shield
+# Enable Origin Shield
 variable "enable_origin_shield" {
   description = "Enable or disable Origin Shield. Options: true or false."
   type        = bool
@@ -63,7 +63,7 @@ variable "allowed_http_methods" {
   type        = list(string)
   default     = ["GET", "HEAD"]
   validation {
-    condition     = alltrue([for method in var.allowed_http_methods : contains(["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"], method)])
+    condition     = alltrue([for method in var.allowed_http_methods : contains(["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"], method)]))
     error_message = "Allowed HTTP methods must be a subset of: GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE."
   }
 }
