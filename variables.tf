@@ -1,3 +1,8 @@
+variable "region" {
+  description = "The AWS region to deploy resources in"
+  type        = string
+  default     = "us-west-2"
+}
 # Origin Type
 variable "origin_type" {
   description = "Type of origin to use for CloudFront. Options: s3, elb, apigateway, mediastore, mediapackage, mediapackagev2, vpc."
@@ -63,7 +68,7 @@ variable "allowed_http_methods" {
   type        = list(string)
   default     = ["GET", "HEAD"]
   validation {
-    condition     = alltrue([for method in var.allowed_http_methods : contains(["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"], method)]))
+    condition     = alltrue([for method in var.allowed_http_methods : contains(["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"], method)])
     error_message = "Allowed HTTP methods must be a subset of: GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE."
   }
 }
